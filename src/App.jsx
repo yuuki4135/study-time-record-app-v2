@@ -57,6 +57,7 @@ function App() {
         ))}
         <button type="submit">追加</button>
         <div>{error}</div>
+        <div>合計時間: {records.reduce((acc, record) => acc + record.time, 0)} / 1000 (h)</div>
       </form>
     </>
   )
