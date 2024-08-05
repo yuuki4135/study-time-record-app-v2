@@ -1,5 +1,11 @@
 import { useState } from 'react'
 
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://fvkzpaeinzoxaniwyqqi.supabase.co'
+const supabaseKey = process.env.SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
+
 function App() {
   const [records, setRecords] = useState([])
   const [title, setTitle] = useState('')
