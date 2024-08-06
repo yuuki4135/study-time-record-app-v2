@@ -33,6 +33,19 @@ function App() {
     }
   }
 
+  const deleteRecord = async (id) => {
+    const response = await supabase
+      .from('study-record')
+      .delete()
+      .eq('id', id)
+    if(response.error){
+      setError('削除に失敗しました') 
+    }else{
+      setRecords(records.filter((record) => record.id !== id))
+      setError('')
+    }
+  }
+
   useEffect(() => {
     const fetchRecords = async () => {
       const { data, error } = await supabase
@@ -83,6 +96,7 @@ function App() {
           {records.map((record, index) => (
             <div key={index}>
               {record.title}: {record.time}時間
+              <button type='button' onClick={()=>{deleteRecord(record.id)}} style={{marginLeft: '10px'}}>削除</button>
             </div>
           ))}
           <button type="submit">追加</button>
