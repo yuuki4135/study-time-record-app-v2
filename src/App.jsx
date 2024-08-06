@@ -13,16 +13,23 @@ function App() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     if (!title || typeof time != 'number') {
       setError('入力されていない項目があります')
     }else{
-      setRecords([...records, { title, time }])
-      setTitle('')
-      setTime(0)
-      setError('')
+      const { error } = await supabase
+        .from('study-record')
+        .insert({ title, time })
+      if(error){
+        setError('保存に失敗しました') 
+      }else{
+        setRecords([...records, { title, time }])
+        setTitle('')
+        setTime(0)
+        setError('')
+      }
     }
   }
 
