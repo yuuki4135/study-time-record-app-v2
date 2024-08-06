@@ -64,7 +64,7 @@ function App() {
   return (
     <>
       <Load loading={loading}>
-        <h1>学習記録一覧</h1>
+        <h1>学習記録一覧だよ</h1>
         <form onSubmit={handleSubmit}>
           <div>
             <label>

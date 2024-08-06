@@ -7,5 +7,8 @@ export default defineConfig({
   server: {
     host: true
   },
-  plugins: [react(), env({ prefix: "VITE", mountedPath: "process.env" })]
+  plugins: [react(), env({ prefix: "VITE", mountedPath: "process.env" })],
+  build: {
+    outDir: 'dist',
+  },
 })
