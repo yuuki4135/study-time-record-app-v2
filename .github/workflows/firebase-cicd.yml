@@ -17,10 +17,10 @@ jobs:
           node-version: 20
       - name: Install dependencies
         run: npm install
+      - name: Load environment variables
+        run: node load-env.js
       - name: Build
         run: npm run build
-        env:
-          PUBLIC_URL: /study-time-record-app-v2
       - name: Deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -28,3 +28,5 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_STUDY_RECORD_APP_27B14 }}
           channelId: live
           projectId: study-record-app-27b14
+          VITE_SUPABASE_URL: ${{ env.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_KEY: ${{ env.VITE_SUPABASE_KEY }}
