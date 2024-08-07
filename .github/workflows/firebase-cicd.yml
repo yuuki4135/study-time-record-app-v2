@@ -1,4 +1,4 @@
-name: Hello World
+name: firebase-cicd
 
 on: 
   push:
@@ -21,3 +21,10 @@ jobs:
         run: npm run build
         env:
           PUBLIC_URL: /study-time-record-app-v2
+      - name: Deploy
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_STUDY_RECORD_APP_27B14 }}
+          channelId: live
+          projectId: study-record-app-27b14
