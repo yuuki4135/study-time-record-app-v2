@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  say_hello:
+  firebase-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -17,6 +17,8 @@ jobs:
           node-version: 20
       - name: Install dependencies
         run: npm install
+      - name: test
+        run: npm run test
       - name: Build
         run: npm run build
         env:

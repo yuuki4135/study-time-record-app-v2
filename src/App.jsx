@@ -63,6 +63,7 @@ function App() {
 
   return (
     <>
+      <title data-testid='title'>学習記録一覧</title>
       <Load loading={loading}>
         <h1>学習記録一覧</h1>
         <form onSubmit={handleSubmit}>
@@ -71,6 +72,7 @@ function App() {
               学習内容
               <input
                 type="text"
+                data-testid='title-input'
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
@@ -81,6 +83,7 @@ function App() {
               学習時間
               <input
                 type="number"
+                data-testid='time-input'
                 value={time}
                 onChange={(e) => setTime(Number(e.target.value))}
               />
@@ -96,10 +99,10 @@ function App() {
           {records.map((record, index) => (
             <div key={index}>
               {record.title}: {record.time}時間
-              <button type='button' onClick={()=>{deleteRecord(record.id)}} style={{marginLeft: '10px'}}>削除</button>
+              <button type='button' onClick={()=>{deleteRecord(record.id)}} style={{marginLeft: '10px'}} data-testid='delete-button'>削除</button>
             </div>
           ))}
-          <button type="submit">追加</button>
+          <button type="submit" data-testid='submit-button'>追加</button>
           <div>{error}</div>
           <div>合計時間: {records.reduce((acc, record) => acc + record.time, 0)} / 1000 (h)</div>
         </form>
